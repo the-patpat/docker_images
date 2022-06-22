@@ -1,10 +1,11 @@
 # This is an auto generated Dockerfile for ros:ros-core
 # generated from docker_images/create_ros_core_image.Dockerfile.em
-FROM ubuntu:bionic
+FROM nvidia/cuda:11.3.0-base-ubuntu18.04 
 
 # setup timezone
+RUN apt-get update && apt-get install -q -y --no-install-recommends apt-utils dialog
 RUN echo 'Etc/UTC' > /etc/timezone && \
-    ln -s /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
+    ln -sf /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
     apt-get update && \
     apt-get install -q -y --no-install-recommends tzdata && \
     rm -rf /var/lib/apt/lists/*
@@ -14,6 +15,14 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
     dirmngr \
     gnupg2 \
     && rm -rf /var/lib/apt/lists/*
+
+#Install pytorch
+RUN apt-get update && apt-get install -q -y --no-install-recommends \
+    python3-pip
+
+RUN pip3 install --upgrade pip
+
+RUN pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
 
 # setup sources.list
 RUN echo "deb http://packages.ros.org/ros/ubuntu bionic main" > /etc/apt/sources.list.d/ros1-latest.list

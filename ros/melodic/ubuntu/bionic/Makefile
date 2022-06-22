@@ -14,8 +14,8 @@ build:
 	@docker build --tag=ros:melodic-ros-base-bionic          ros-base/.
 	@docker build --tag=ros:melodic-robot-bionic             robot/.
 	@docker build --tag=ros:melodic-perception-bionic        perception/.
-	# @docker build --tag=osrf/ros:melodic-desktop-bionic      desktop/.
-	# @docker build --tag=osrf/ros:melodic-desktop-full-bionic desktop-full/.
+	@docker build --tag=osrf/ros:melodic-desktop-bionic      desktop/.
+	@docker build --tag=osrf/ros:melodic-desktop-full-bionic desktop-full/.
 
 pull:
 	@docker pull ros:melodic-ros-core-bionic
