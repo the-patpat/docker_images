@@ -1,4 +1,4 @@
-# This is an auto generated Dockerfile for ros:ros-core
+# This is an auto generated Dockerfile for rumexweeds_ros:ros-core
 # generated from docker_images/create_ros_core_image.Dockerfile.em
 FROM nvidia/cuda:11.3.0-base-ubuntu18.04 
 
